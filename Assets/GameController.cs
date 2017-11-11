@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour {
 
-
-
-	void Start () {
-		
+    public int stageTime;
+    
+	void Start ()
+    {
+        
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
+	void Update ()
+    {
+		if(Time.time > stageTime)
+        {
+            GetComponent<ObsMaker>().isTimeRunning = false;
+        }
 	}
 }

@@ -43,7 +43,6 @@ public class Player : MonoBehaviour {
     {
         return true;
         //땅에 닿으면 true반환하는 코드
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
