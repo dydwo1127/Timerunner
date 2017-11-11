@@ -189,7 +189,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
 --- !u!4 &21112445
 Transform:
   m_ObjectHideFlags: 0
@@ -232,8 +232,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacles:
-  - {fileID: 1609274973772718, guid: 058528d11ce6f3a47b8e85ada78ccc90, type: 2}
-  - {fileID: 1380162292066586, guid: 414228a56d465c745be3149328abae30, type: 2}
+  - {fileID: 1639174914061182, guid: 9126010847b90d64b8533289278e2c96, type: 2}
+  - {fileID: 1118051226527048, guid: c610497f00568db4d8a037aa6c53f1d7, type: 2}
+  - {fileID: 1557168167621394, guid: 2bdddec2889c42f4092ca82a802aad81, type: 2}
   obsInstanceRate: 2
   isTimeRunning: 1
 --- !u!114 &341725921
@@ -425,7 +426,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1295307226}
   m_LocalRotation: {x: -0, y: -0, z: 0.007266964, w: 0.99997365}
-  m_LocalPosition: {x: -7.7, y: -1.35, z: 0}
+  m_LocalPosition: {x: -7.76, y: -1.26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -445,7 +446,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 10
+  m_GravityScale: 9
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
