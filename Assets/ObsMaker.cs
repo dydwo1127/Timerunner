@@ -5,16 +5,22 @@ using UnityEngine;
 public class ObsMaker : MonoBehaviour {
 
     public List<GameObject> Obstacles;
+    public float obsInstanceRate;
+
+    float obsInstanceTime = 0;
 
 	void Start () {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
-        if (Input.GetKeyDown(KeyCode.R))
+	void Update ()
+    {
+        obsInstanceTime += Time.deltaTime;
+
+        if(obsInstanceTime > obsInstanceRate)
         {
-            Instantiate(Obstacles[Random.Range(0, 5)]).transform.position = new Vector3(0,0,0);
+            Instantiate(Obstacles[Random.Range(0, 2)]);
+            obsInstanceTime = 0;
         }
 	}
 }

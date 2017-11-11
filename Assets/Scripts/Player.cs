@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+    public float jumpSpeed;
+
     Animator anim;
 
     int jumpCount = 0;
@@ -32,7 +34,7 @@ public class Player : MonoBehaviour {
 
         if(Input.GetKeyDown(KeyCode.Space) && IsOnFloor() && jumpCount <2)
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector3(0, 10, 0);
+            GetComponent<Rigidbody2D>().velocity = new Vector3(0, jumpSpeed, 0);
             jumpCount++;
         }
 	}
@@ -49,6 +51,11 @@ public class Player : MonoBehaviour {
         if(collision.gameObject.tag == "Floor")
         {
             jumpCount = 0;
+        }
+
+        if(collision.gameObject.tag == "Obs")
+        {
+            Destroy(collision.gameObject);
         }
     }
 }
