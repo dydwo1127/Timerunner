@@ -102,6 +102,7 @@ public class Player : MonoBehaviour {
         if(collision.gameObject.tag == "Pit")
         {
             gameOver = true;
+            jumpCount = 3;
             foreach(BoxCollider2D collider in GetComponents<BoxCollider2D>())
             {
                 collider.enabled = false;

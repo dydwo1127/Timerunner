@@ -730,7 +730,7 @@ MonoBehaviour:
   - {fileID: 384592479}
   - {fileID: 1150217148}
   - {fileID: 1455999387}
-  clearTime: 15
+  clearTime: 60
   timePass: 0
 --- !u!4 &341725922
 Transform:
