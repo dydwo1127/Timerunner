@@ -58,6 +58,15 @@ public class MainScene : MonoBehaviour {
         credit.SetActive(true);
     }
 
+    public void LevelUp()
+    {
+        LevelData.LevelUp();
+    }
+    public void Reset()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
     public void Volume(float value)
     {
         LevelData.volume = value;

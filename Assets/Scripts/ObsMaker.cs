@@ -47,19 +47,21 @@ public class ObsMaker : MonoBehaviour {
             obsInstanceTime = 0;
         }
 
+        float time = GetComponent<GameController>().timePass;
+
         if(LevelData.isInfinite)
         {
-            if (Time.time > 180)
+            if (time > 180)
             {
                 obsInstanceRate = 0.5f;
                 return;
             }
-            else if (Time.time > 120)
+            else if (time > 120)
             {
                 obsInstanceRate = 0.7f;
                 return;
             }
-            else if (Time.time > 60)
+            else if (time > 60)
             {
                 obsInstanceRate = 1f;
                 obsRange = 7;

@@ -22,11 +22,12 @@ public class GameController : MonoBehaviour {
 
 
     public float clearTime;
-    float timePass;
+    public float timePass;
     float ClearTime { get { return Mathf.Max(clearTime-timePass, 0f); } }
     bool isPaused = false;
     bool isMoving = false;
     bool isTalking = false;
+    bool isClear = false;
 
 	void Start ()
     {
@@ -60,9 +61,10 @@ public class GameController : MonoBehaviour {
         {
             GetComponent<ObsMaker>().isTimeRunning = false;
         }
-        if(timePass > clearTime + 3f)
+        if(timePass > clearTime + 3f && !isClear)
         {
             StageClear();
+            isClear = true;
         }
 
         if(isPaused)
