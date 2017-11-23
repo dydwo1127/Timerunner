@@ -12,6 +12,7 @@ public class Player : MonoBehaviour {
     Animator anim;
 
     int jumpCount = 0;
+    bool gameOver = false;
 	void Start () {
         anim = GetComponent<Animator>();
         standCollider.enabled = true;
@@ -50,6 +51,10 @@ public class Player : MonoBehaviour {
         {
             SlideUp();
         }
+        if(!gameOver)
+        {
+            transform.position = new Vector3(transform.position.x, Mathf.Max(transform.position.y, -1.35f), 0);
+        }
 	}
 
     public void Jump()
@@ -64,8 +69,8 @@ public class Player : MonoBehaviour {
     public void Slide()
     {
         anim.SetTrigger("slide");
-        standCollider.enabled = false;
         slideCollider.enabled = true;
+        standCollider.enabled = false;
     }
 
     public void SlideUp()
@@ -90,11 +95,13 @@ public class Player : MonoBehaviour {
 
         if(collision.gameObject.tag == "Obs")
         {
+            gameOver = true;
             Destroy(collision.gameObject);
             GC.GameOver();
         }
         if(collision.gameObject.tag == "Pit")
         {
+            gameOver = true;
             foreach(BoxCollider2D collider in GetComponents<BoxCollider2D>())
             {
                 collider.enabled = false;

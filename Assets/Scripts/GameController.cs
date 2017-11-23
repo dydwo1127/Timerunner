@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour {
     
     public float backgroundSpeed;
 
+
     public GameObject player;
     public GameObject background;
     public GameObject gameOverPanel;
@@ -44,8 +45,17 @@ public class GameController : MonoBehaviour {
 
     void Update()
     {
+
         timePass += Time.deltaTime;
-        timeText.text = "" + (int)ClearTime;
+        if (!LevelData.isInfinite)
+        {
+            timeText.text = "" + (int)ClearTime;
+        }
+        else
+        {
+            clearTime = timePass + 10f;
+            timeText.text = "" + (int)timePass;
+        }
         if (timePass > clearTime)
         {
             GetComponent<ObsMaker>().isTimeRunning = false;
@@ -73,6 +83,48 @@ public class GameController : MonoBehaviour {
 
     public void GameOver()
     {
+        if(LevelData.isInfinite)
+        {
+            if(!PlayerPrefs.HasKey("r1"))
+            {
+                for(int i = 1; i<=5; i++)
+                {
+                    PlayerPrefs.SetFloat("r" + i, 0f);
+                }
+            }
+            float[] ranking = new float[5];
+
+            for(int i = 0; i <5; i++)
+            {
+                ranking[i] = PlayerPrefs.GetFloat("r" + (i + 1));
+            }
+
+            for(int i = 0; i < 5; i++)
+            {
+                if (timePass > ranking[i])
+                {
+                    if(i == 4)
+                    {
+                        ranking[i] = timePass;
+                        break;
+                    }
+                    else
+                    {
+                        for(int j = 3; j >= i;j--)
+                        {
+                            ranking[j + 1] = ranking[j];
+                        }
+                        ranking[i] = timePass;
+                        break;
+                    }
+                }
+            }
+
+            for(int i =0;i<5;i++)
+            {
+                PlayerPrefs.SetFloat("r" + (i + 1), ranking[i]);
+            }
+        }
         gameOverPanel.SetActive(true);
         isPaused = true;
         Time.timeScale = 0;
@@ -109,6 +161,11 @@ public class GameController : MonoBehaviour {
 
     public void MoveScene(int index)
     {
+        if(LevelData.isInfinite && index == 2)
+        {
+            SceneManager.LoadScene(4);
+            return;
+        }
         SceneManager.LoadScene(index);
     }
 

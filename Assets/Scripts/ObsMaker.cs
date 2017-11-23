@@ -29,6 +29,12 @@ public class ObsMaker : MonoBehaviour {
                 obsRange = 7;
                 return;
         }
+
+        if(LevelData.isInfinite)
+        {
+            obsInstanceRate = 2f;
+            obsRange = 4;
+        }
 	}
 	
 	void Update ()
@@ -39,6 +45,25 @@ public class ObsMaker : MonoBehaviour {
         {
             Instantiate(Obstacles[Random.Range(0, obsRange)]);
             obsInstanceTime = 0;
+        }
+
+        if(LevelData.isInfinite)
+        {
+            if (Time.time > 180)
+            {
+                obsInstanceRate = 0.5f;
+                return;
+            }
+            else if (Time.time > 120)
+            {
+                obsInstanceRate = 0.7f;
+                return;
+            }
+            else if (Time.time > 60)
+            {
+                obsInstanceRate = 1f;
+                obsRange = 7;
+            }
         }
 	}
 }

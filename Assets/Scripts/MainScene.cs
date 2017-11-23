@@ -29,16 +29,23 @@ public class MainScene : MonoBehaviour {
                 }
             }
         }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
 	}
 
     public void ToStageSelect()
     {
+        LevelData.isInfinite = false;
         SceneManager.LoadScene(1);
     }
 
     public void ToInfinite()
     {
-        SceneManager.LoadScene(3);
+        LevelData.isInfinite = true;
+        SceneManager.LoadScene(4);
     }
 
     public void Setting()

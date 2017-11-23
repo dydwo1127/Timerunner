@@ -45,13 +45,17 @@ public class LevelData
             PlayerPrefs.SetInt("Stage", value);
         }
     }
-    public static float volume;
+    public static float volume = 0.5f;
     public static int currentStage;
+
+    public static bool isInfinite = false;
 }
 
 public class GameData : MonoBehaviour {
 
     public static GameData instance;
+
+    public AudioSource mainBgm;
 
     void Awake()
     {
@@ -67,6 +71,11 @@ public class GameData : MonoBehaviour {
         DontDestroyOnLoad(this.gameObject);
     }
 
+    void Start()
+    {
+        mainBgm.volume = LevelData.volume;
+    }
+
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.U))
@@ -77,6 +86,15 @@ public class GameData : MonoBehaviour {
         {
             PlayerPrefs.DeleteAll();
         }
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            for(int i = 1; i<=5;i++)
+            {
+                Debug.Log(PlayerPrefs.GetFloat("r" + i));
+            }
+        }
+
+        mainBgm.volume = LevelData.volume;
     }
 
     

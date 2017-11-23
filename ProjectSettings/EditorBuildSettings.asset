@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Game.unity
     guid: c3310548f2650a747851a26c1339802a
+  - enabled: 1
+    path: Assets/InfiniteMenu.unity
+    guid: a88e47317af31ca42b8c472f449218e5
