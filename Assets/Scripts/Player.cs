@@ -7,6 +7,7 @@ public class Player : MonoBehaviour {
     public float jumpSpeed;
     public BoxCollider2D standCollider;
     public BoxCollider2D slideCollider;
+    public GameController GC;
 
     Animator anim;
 
@@ -24,13 +25,13 @@ public class Player : MonoBehaviour {
         {
             transform.Translate(5 * Time.deltaTime, 0, 0);
             transform.localScale = new Vector3(1, 1, 1);
-            anim.Play("run");
+            anim.Play("player_run");
         }
         else if(Input.GetKey(KeyCode.A))
         {
             transform.Translate(-5 * Time.deltaTime, 0, 0);
             transform.localScale = new Vector3(-1, 1, 1);
-            anim.Play("run");
+            anim.Play("player_run");
         }
         else
         {
@@ -90,6 +91,21 @@ public class Player : MonoBehaviour {
         if(collision.gameObject.tag == "Obs")
         {
             Destroy(collision.gameObject);
+            GC.GameOver();
         }
+        if(collision.gameObject.tag == "Pit")
+        {
+            foreach(BoxCollider2D collider in GetComponents<BoxCollider2D>())
+            {
+                collider.enabled = false;
+                StartCoroutine(DelayGameOver());
+            }
+        }
+    }
+
+    IEnumerator DelayGameOver()
+    {
+        yield return new WaitForSeconds(1f);
+        GC.GameOver();
     }
 }
